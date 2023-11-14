@@ -9,8 +9,7 @@
  */
 int _printf(const char *format, ...);
 {
-	unsigned int i, j = 0;
-	char *aaa;
+	unsigned int i, j, aaa = 0;
 	va_list lists;
 
 	va_start(lists, *format);
@@ -25,29 +24,20 @@ int _printf(const char *format, ...);
 		{
 			_putchar(format[i]);
 		}
-		else if (format[i] == '%' && format[i + 1] == 'c')
-		{
-			_putchar(va_arg(args, int));
-			i++;
-		}
 		else if (format[i] == '%' && format[i + 1] == 's')
 		{
-			const char *aa = va_arg(args, const char *);
-
-			while (*str)
-			{
-				_putchar(*aaa++);
-				j++;
-			}
+			j = myfile(va_arg(lists, char *));
 			i++;
+			aaa += j - 1;
 		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
-			_putchar("%%");
-			j++;
+			_myfile("%%");
+			aaa++;
 		}
-		j += 1;
+		aaa += 1;
 	}
 	va_end(lists);
-	return (j);
+	return (aaa);
 }
+
