@@ -2,16 +2,16 @@
 
 /**
  * _myfile - function to print a character
- * @s: string input
+ * @str: string input
  * Return: Always 0
 */
-int _myfile(char *s)
+int _myfile(char *str)
 {
 	int i = 0;
 
-	for (i = 0; s[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		_puchar(s[i]);
+		_puchar(str[i]);
 	}
 	return (i);
 }
