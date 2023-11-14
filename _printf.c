@@ -9,13 +9,16 @@
  */
 int _printf(const char *format, ...);
 {
-	unsigned int i;
-	unsigned int str_count;
-	unsigned int count = 0;
+	int i, j = 0;
+	char *aaa;
+	va_list lists;
 
-	if (!format || (format[0] == '%' && !format[1]))
+	va_start(lists, *format);
+
+	if (format == NULL)
 		return (-1);
-
+	if (format != NULL || (format[0] == '%' && format[1] != NULL))
+		return (-1);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -29,20 +32,22 @@ int _printf(const char *format, ...);
 		}
 		else if (format[i] == '%' && format[i + 1] == 's')
 		{
-			const char *str = va_arg(args, const char *);
-		}
+			const char *aa = va_arg(args, const char *);
 
-		while (*str)
+			while (*str)
+			{
+				_putchar(*aaa++);
+				j++;
+			}
+			i++;
+		}
+		else if (format[i] == '%' && format[i + 1] == '%')
 		{
-			_putchar(*str++);
-			count++;
+			_putchar("%%");
+			j++;
 		}
-		i++;
+		j += 1;
 	}
-	else if (format[i] == '%' && format[i + 1] == '%')
-	{
-		_putchar('%');
-	}
-	count++;
-
+	va_end(lists);
+	return (j);
 }
