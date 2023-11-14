@@ -9,5 +9,6 @@
 
 int _puchar(char c);
 int _printf(const char *format, ...);
+int _myfile(char *str);
 
 #endif
