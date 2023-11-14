@@ -9,7 +9,7 @@
  */
 int _printf(const char *format, ...);
 {
-	int i, j = 0;
+	unsigned int i, j = 0;
 	char *aaa;
 	va_list lists;
 
