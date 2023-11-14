@@ -1,59 +1,54 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
+/**
+ * _printf - produces output according to a format
+ * @format: input
+ * @...: next input
+ * Return: Always 0
+ */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int chars_printed = 0;
+	int i = 0;
+	char *str;
+	va_list list;
 
-	va_start(args, format);
+	va_start(list, format);
 
-	while (*format)
+	if (format)
 	{
-		if (*format == '%')
+		while (format[i])
 		{
-			format++;
-
-			switch (*format)
+			switch (format[i])
 			{
 				case 'c':
 					char c = va_arg(args, int);
 
 					_putchar(c);
-					chars_printed++;
+					i++;
 					break;
 				case 's':
 					const char *str = va_arg(args, const char *);
 
 					while (*str)
-					{
 						_putchar(*str++);
-						chars_printed++;
-					}
+						i++;
 					break;
-
 				case '%':
 					_putchar('%');
-					chars_printed++;
+					i++
 					break;
-					default;
+				default:
+					i++;
+					continue;
 			}
-			_putchar('%');
-			_putchar(*format);
-			chars_printed += 2;
-			break;
+			i++;
 		}
-	} else
-	{
-		_putchar(*format);
-		chars_printed++;
 	}
-	format++;
+
+	printf("\n");
+	va_end(list);
 }
