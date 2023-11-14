@@ -1,8 +1,5 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdarg.h>
-#include <unistd.h>
 
 /**
  * _printf - produces output according to a format
@@ -10,45 +7,42 @@
  * @...: next input
  * Return: Always 0
  */
-int _printf(const char *format, ...)
+int _printf(const char *format, ...);
 {
-	int i = 0;
-	char *str;
-	va_list list;
+	unsigned int i;
+	unsigned int str_count;
+	unsigned int count = 0;
 
-	va_start(list, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
 
-	if (format)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		while (format[i])
+		if (format[i] != '%')
 		{
-			switch (format[i])
-			{
-				case 'c':
-					char c = va_arg(args, int);
-
-					_putchar(c);
-					i++;
-					break;
-				case 's':
-					const char *str = va_arg(args, const char *);
-
-					while (*str)
-						_putchar(*str++);
-						i++;
-					break;
-				case '%':
-					_putchar('%');
-					i++
-					break;
-				default:
-					i++;
-					continue;
-			}
+			_putchar(format[i]);
+		}
+		else if (format[i] == '%' && format[i + 1] == 'c')
+		{
+			_putchar(va_arg(args, int));
 			i++;
 		}
-	}
+		else if (format[i] == '%' && format[i + 1] == 's')
+		{
+			const char *str = va_arg(args, const char *);
+		}
 
-	printf("\n");
-	va_end(list);
+		while (*str)
+		{
+			_putchar(*str++);
+			count++;
+		}
+		i++;
+	}
+	else if (format[i] == '%' && format[i + 1] == '%')
+	{
+		_putchar('%');
+	}
+	count++;
+
 }
