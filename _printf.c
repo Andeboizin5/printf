@@ -11,6 +11,8 @@ int _printf(const char *format, ...)
 	unsigned int i, k, j = 0;
 	va_list lists;
 
+	va_start(lists, format);
+
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
