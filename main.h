@@ -1,14 +1,12 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
+
 #include <stdarg.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-#define UNUSED(x) (void)(x)
-#define BUFF_SIZE 1024
-
-int _puchar(char c);
+int _myfile(char c);
+int myputs(char *str);
 int _printf(const char *format, ...);
-int _myfile(char *str);
 
 #endif
