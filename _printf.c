@@ -37,6 +37,11 @@ int _printf(const char *format, ...)
 			i++;
 			j += (k - 1);
 		}
+		else if (format[i] == '%' && format[i + 1] == 'd')
+		{
+			_myfile(va_arg(lists, int));
+			i++;
+		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
 			_myfile('%');
